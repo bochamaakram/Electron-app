@@ -68,7 +68,8 @@ body {
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
-    grid-auto-rows: 100px; /* specific height for better look */
+    grid-auto-rows: 100px;
+    /* specific height for better look */
     gap: 5px;
     overflow-y: auto;
 }
@@ -111,16 +112,39 @@ body {
     flex-direction: column;
 }
 
-.task-section h2 {
-    margin-top: 0;
-}
-
-.task-input-container {
+.mode-switcher {
     display: flex;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
-#task-input {
+.mode-btn {
+    flex: 1;
+    padding: 8px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.mode-btn.active {
+    background-color: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.input-group {
+    display: none;
+    margin-bottom: 20px;
+}
+
+.input-group.active {
+    display: flex;
+}
+
+/* Task Input */
+#task-input-container input {
     flex: 1;
     padding: 10px;
     border: 1px solid var(--border-color);
@@ -128,7 +152,7 @@ body {
     outline: none;
 }
 
-#add-task-btn {
+.action-btn {
     padding: 10px 15px;
     background-color: var(--accent-color);
     color: white;
@@ -137,8 +161,79 @@ body {
     cursor: pointer;
 }
 
-#add-task-btn:hover {
-    background-color: #357abd;
+/* Note Input */
+#note-input-container {
+    flex-direction: column;
+}
+
+#note-input {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px 4px 0 0;
+    resize: none;
+    outline: none;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+#add-note-btn {
+    border-radius: 0 0 4px 4px;
+    width: 100%;
+}
+
+/* Voice Input */
+#voice-input-container {
+    align-items: center;
+    gap: 10px;
+}
+
+.record-btn {
+    background-color: #ff4d4f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.record-btn.recording {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 77, 79, 0.7);
+    }
+
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 10px rgba(255, 77, 79, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 77, 79, 0);
+    }
+}
+
+.stop-btn {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.stop-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 ul {
@@ -185,4 +280,29 @@ li.completed span {
 .delete-btn:hover {
     background-color: #fff1f0;
     border-radius: 4px;
+}
+
+.edit-btn {
+    background: none;
+    border: none;
+    color: var(--accent-color);
+    cursor: pointer;
+    font-size: 1rem;
+    margin-left: 5px;
+}
+
+/* Item Types */
+.item-note {
+    align-items: flex-start;
+}
+
+.item-note span {
+    white-space: pre-wrap;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.item-voice audio {
+    height: 30px;
+    outline: none;
 }

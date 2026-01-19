@@ -19,6 +19,18 @@ function createWindow() {
 }
 
 app.whenReady().then(() => {
+    ipcMain.handle('save-audio', async (event, arrayBuffer) => {
+        const fs = require('fs');
+        const path = require('path');
+        const buffer = Buffer.from(arrayBuffer);
+        const fileName = `voice-note-${Date.now()}.webm`;
+        const filePath = path.join(app.getPath('userData'), fileName);
+
+        await fs.promises.writeFile(filePath, buffer);
+        console.log('Saved audio to:', filePath);
+        return filePath;
+    });
+
     createWindow();
 
     app.on('activate', function () {
