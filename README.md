@@ -1,54 +1,50 @@
 # Electron Calendar & Task Tracker
 
-A simple, educational Electron application that features a monthly calendar and a daily task tracker. This project is designed to demonstrate the basic structure and capabilities of an Electron app.
+A simple, educational Electron application featuring a monthly calendar and a multi-type tracker (Tasks, Notes, Voice Memos). Built with the **Tokyo Night** theme.
 
 ## Features
 
-*   **Interactive Calendar**: View the current month, navigate between months, and highlight the current day.
-*   **Task Tracker**: Add, toggle completion status, and delete tasks.
-*   **Persistence**: Tasks are saved locally using `localStorage`, so they remain available after restarting the application.
-*   **Clean UI**: a modern, responsive interface built with CSS Flexbox and Grid.
+*   **Interactive Calendar**: Navigate months, select days. Past days are visually muted.
+*   **Multi-Type Tracker**:
+    *   **Tasks**: Add tasks to today or future dates. Mark as complete.
+    *   **Notes**: Add text notes (today only).
+    *   **Voice Memos**: Record audio notes using your microphone (today only).
+*   **Date Filtering**: Click a calendar day to see only items for that date.
+*   **CRUD Operations**: Edit (✎) and Delete (×) any item.
+*   **Persistence**: Data saved to `localStorage`. Voice files saved to system.
+*   **Tokyo Night Theme**: A beautiful dark theme with pink accents.
 
 ## Project Structure
 
-The project follows a standard Electron architecture:
-
-*   **`main.js`**: The **Main Process**. It handles the application lifecycle, creates the browser window, and manages system events.
-*   **`preload.js`**: The **Preload Script**. It runs before the renderer process and is used to expose safe APIs to the frontend, maintaining security context isolation.
-*   **`index.html`**: The entry point for the **Renderer Process**. It defines the HTML structure of the user interface.
-*   **`renderer.js`**: Contains the frontend logic (JavaScript) for rendering the calendar grid, handling user interactions, and managing task data.
-*   **`styles.css`**: Contains all the CSS styling for the application.
+*   **`main.js`**: Main Process. Creates the window and handles IPC for saving audio files.
+*   **`preload.js`**: Preload Script. Exposes safe APIs to the renderer via `contextBridge`.
+*   **`index.html`**: Renderer entry point. UI structure.
+*   **`renderer.js`**: Frontend logic (Calendar, Items, Audio Recording).
+*   **`styles.css`**: Tokyo Night themed styling.
 
 ## Prerequisites
 
-*   Node.js (v14 or higher recommended)
-*   npm (usually comes with Node.js)
+*   Node.js (v14+)
+*   npm
 
 ## Installation
 
-1.  Clone the repository:
-    ```bash
-    git clone https://github.com/bochamaakram/Electron-app.git
-    cd Electron-app
-    ```
-
-2.  Install dependencies:
-    ```bash
-    npm install
-    ```
+```bash
+git clone https://github.com/bochamaakram/Electron-app.git
+cd Electron-app
+npm install
+```
 
 ## Usage
-
-To start the application in development mode:
 
 ```bash
 npm start
 ```
 
-*Note: The start script includes the `--no-sandbox` flag to ensure compatibility with certain Linux environments.*
+*Note: The `--no-sandbox` flag is included for Linux compatibility.*
 
-## Technologies Used
+## Technologies
 
-*   **Electron**: Framework for building cross-platform desktop apps with web technologies.
-*   **HTML5/CSS3**: For structure and styling.
-*   **JavaScript (ES6+)**: For application logic.
+*   Electron
+*   HTML5 / CSS3
+*   JavaScript (ES6+)
