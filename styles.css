@@ -102,6 +102,30 @@ body {
     cursor: default;
 }
 
+.day.past {
+    background-color: #e0e0e0;
+    color: #888;
+}
+
+.day.past:hover {
+    background-color: #d0d0d0;
+}
+
+/* Disabled inputs */
+.action-btn:disabled,
+.record-btn:disabled,
+textarea:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.empty-message {
+    color: #888;
+    font-style: italic;
+    padding: 20px;
+    text-align: center;
+}
+
 /* Task Section (Sidebar) */
 .task-section {
     flex: 1;
